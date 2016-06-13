@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		D88CFA9D1D0E491400221981 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CFA9C1D0E491400221981 /* AppDelegate.swift */; };
-		D88CFA9F1D0E491400221981 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CFA9E1D0E491400221981 /* ViewController.swift */; };
-		D88CFAA21D0E491400221981 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88CFAA01D0E491400221981 /* Main.storyboard */; };
 		D88CFAA51D0E491400221981 /* Keyboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D88CFAA31D0E491400221981 /* Keyboard.xcdatamodeld */; };
 		D88CFAA71D0E491500221981 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88CFAA61D0E491500221981 /* Assets.xcassets */; };
 		D88CFAAA1D0E491500221981 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D88CFAA81D0E491500221981 /* LaunchScreen.storyboard */; };
 		D88CFAB51D0E491500221981 /* KeyboardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CFAB41D0E491500221981 /* KeyboardTests.swift */; };
 		D88CFAC01D0E491500221981 /* KeyboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CFABF1D0E491500221981 /* KeyboardUITests.swift */; };
+		D89A38B71D0F1B9B00545A47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A38B51D0F1B9B00545A47 /* MainViewController.swift */; };
+		D89A38B81D0F1B9B00545A47 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89A38B61D0F1B9B00545A47 /* MainViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +37,6 @@
 /* Begin PBXFileReference section */
 		D88CFA991D0E491400221981 /* Keyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88CFA9C1D0E491400221981 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D88CFA9E1D0E491400221981 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D88CFAA11D0E491400221981 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D88CFAA41D0E491400221981 /* Keyboard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Keyboard.xcdatamodel; sourceTree = "<group>"; };
 		D88CFAA61D0E491500221981 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D88CFAA91D0E491500221981 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +47,8 @@
 		D88CFABB1D0E491500221981 /* KeyboardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeyboardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88CFABF1D0E491500221981 /* KeyboardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardUITests.swift; sourceTree = "<group>"; };
 		D88CFAC11D0E491500221981 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D89A38B51D0F1B9B00545A47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		D89A38B61D0F1B9B00545A47 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,8 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				D88CFA9C1D0E491400221981 /* AppDelegate.swift */,
-				D88CFA9E1D0E491400221981 /* ViewController.swift */,
-				D88CFAA01D0E491400221981 /* Main.storyboard */,
+				D89A38B51D0F1B9B00545A47 /* MainViewController.swift */,
+				D89A38B61D0F1B9B00545A47 /* MainViewController.xib */,
 				D88CFAA61D0E491500221981 /* Assets.xcassets */,
 				D88CFAA81D0E491500221981 /* LaunchScreen.storyboard */,
 				D88CFAAB1D0E491500221981 /* Info.plist */,
@@ -233,8 +233,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D88CFAAA1D0E491500221981 /* LaunchScreen.storyboard in Resources */,
+				D89A38B81D0F1B9B00545A47 /* MainViewController.xib in Resources */,
 				D88CFAA71D0E491500221981 /* Assets.xcassets in Resources */,
-				D88CFAA21D0E491400221981 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,8 +259,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89A38B71D0F1B9B00545A47 /* MainViewController.swift in Sources */,
 				D88CFAA51D0E491400221981 /* Keyboard.xcdatamodeld in Sources */,
-				D88CFA9F1D0E491400221981 /* ViewController.swift in Sources */,
 				D88CFA9D1D0E491400221981 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,14 +297,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		D88CFAA01D0E491400221981 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D88CFAA11D0E491400221981 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D88CFAA81D0E491500221981 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -486,6 +478,7 @@
 				D88CFAC61D0E491500221981 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D88CFAC71D0E491500221981 /* Build configuration list for PBXNativeTarget "KeyboardTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +487,7 @@
 				D88CFAC91D0E491500221981 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D88CFACA1D0E491500221981 /* Build configuration list for PBXNativeTarget "KeyboardUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +496,7 @@
 				D88CFACC1D0E491500221981 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

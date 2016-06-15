@@ -15,6 +15,7 @@
 		D88CFAC01D0E491500221981 /* KeyboardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CFABF1D0E491500221981 /* KeyboardUITests.swift */; };
 		D89A38B71D0F1B9B00545A47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89A38B51D0F1B9B00545A47 /* MainViewController.swift */; };
 		D89A38B81D0F1B9B00545A47 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D89A38B61D0F1B9B00545A47 /* MainViewController.xib */; };
+		D89F145A1D1157C10086AF31 /* KeyboardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D89F14591D1157C10086AF31 /* KeyboardManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D88CFAC11D0E491500221981 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D89A38B51D0F1B9B00545A47 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		D89A38B61D0F1B9B00545A47 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		D89F14591D1157C10086AF31 /* KeyboardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				D88CFA9C1D0E491400221981 /* AppDelegate.swift */,
 				D89A38B51D0F1B9B00545A47 /* MainViewController.swift */,
 				D89A38B61D0F1B9B00545A47 /* MainViewController.xib */,
+				D89F14591D1157C10086AF31 /* KeyboardManager.swift */,
 				D88CFAA61D0E491500221981 /* Assets.xcassets */,
 				D88CFAA81D0E491500221981 /* LaunchScreen.storyboard */,
 				D88CFAAB1D0E491500221981 /* Info.plist */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D89F145A1D1157C10086AF31 /* KeyboardManager.swift in Sources */,
 				D89A38B71D0F1B9B00545A47 /* MainViewController.swift in Sources */,
 				D88CFAA51D0E491400221981 /* Keyboard.xcdatamodeld in Sources */,
 				D88CFA9D1D0E491400221981 /* AppDelegate.swift in Sources */,

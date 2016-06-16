@@ -10,6 +10,8 @@ import UIKit
 
 class KeyboardManager: NSObject {
   
+  var currentView: UIView?
+  
   private var hidden: Bool? {
     get {
       if self.hidden == nil {
@@ -29,6 +31,24 @@ class KeyboardManager: NSObject {
       return self.enable
     }
     set(newValue) {
+    }
+  }
+  
+  private var moved: Bool = false
+  private var moveOffsetY: CGFloat = 0
+  
+  private var moveView: UIView? {
+    get {
+      var _moveView = self.moveView
+      if _moveView == nil {
+        _moveView = UIView.init(frame: UIScreen.mainScreen().bounds)
+      }
+      return _moveView
+    }
+    set(newValue) {
+      if newValue != nil {
+        self.moveView = newValue
+      }
     }
   }
   

@@ -10,25 +10,39 @@ import UIKit
 
 class KeyboardManager: NSObject {
   
+  var currentView: UIView?
+  
   private var hidden: Bool? {
     get {
-      if self.hidden == nil {
-        self.hidden = false
-      }
       return self.hidden
     }
     set(newValue) {
+      self.hidden = newValue
     }
   }
   
   private var enable: Bool? {
     get {
-      if self.enable == nil {
-        self.enable = false
-      }
       return self.enable
     }
     set(newValue) {
+      self.enable = newValue
+    }
+  }
+  
+  private var moved: Bool = false
+  private var moveOffsetY: CGFloat = 0
+  
+  private var moveView: UIView? {
+    get {
+      return self.moveView
+    }
+    set(newValue) {
+      if newValue == nil {
+        self.moveView = UIView.init(frame: UIScreen.mainScreen().bounds)
+      } else {
+        self.moveView = newValue
+      }
     }
   }
   

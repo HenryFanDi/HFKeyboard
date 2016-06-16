@@ -14,23 +14,19 @@ class KeyboardManager: NSObject {
   
   private var hidden: Bool? {
     get {
-      if self.hidden == nil {
-        self.hidden = false
-      }
       return self.hidden
     }
     set(newValue) {
+      self.hidden = newValue
     }
   }
   
   private var enable: Bool? {
     get {
-      if self.enable == nil {
-        self.enable = false
-      }
       return self.enable
     }
     set(newValue) {
+      self.enable = newValue
     }
   }
   
@@ -39,14 +35,12 @@ class KeyboardManager: NSObject {
   
   private var moveView: UIView? {
     get {
-      var _moveView = self.moveView
-      if _moveView == nil {
-        _moveView = UIView.init(frame: UIScreen.mainScreen().bounds)
-      }
-      return _moveView
+      return self.moveView
     }
     set(newValue) {
-      if newValue != nil {
+      if newValue == nil {
+        self.moveView = UIView.init(frame: UIScreen.mainScreen().bounds)
+      } else {
         self.moveView = newValue
       }
     }

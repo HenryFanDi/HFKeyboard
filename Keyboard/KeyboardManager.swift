@@ -10,6 +10,28 @@ import UIKit
 
 class KeyboardManager: NSObject {
   
+  private var hidden: Bool? {
+    get {
+      if self.hidden == nil {
+        self.hidden = false
+      }
+      return self.hidden
+    }
+    set(newValue) {
+    }
+  }
+  
+  private var enable: Bool? {
+    get {
+      if self.enable == nil {
+        self.enable = false
+      }
+      return self.enable
+    }
+    set(newValue) {
+    }
+  }
+  
   // MARK: Singleton Pattern
   
   class var shared: KeyboardManager {
@@ -21,6 +43,12 @@ class KeyboardManager: NSObject {
       Static.instance = KeyboardManager()
     }
     return Static.instance!
+  }
+  
+  // MARK: Initialize
+  
+  override init() {
+    super.init()
   }
   
 }

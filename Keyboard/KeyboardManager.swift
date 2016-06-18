@@ -65,4 +65,59 @@ class KeyboardManager: NSObject {
     super.init()
   }
   
+  private func removeKeyboardObserver() {
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+  
+  private func addKeyboardObservers() {
+    let notificationCenter = NSNotificationCenter.defaultCenter()
+    notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+    
+    notificationCenter.addObserver(self, selector: "textFieldDidBeginEditing:", name: UITextFieldTextDidBeginEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "textFieldDidEndEditing:", name: UITextFieldTextDidEndEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+    
+    notificationCenter.addObserver(self, selector: "textViewDidBeginEditing:", name: UITextViewTextDidBeginEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "textViewDidEndEditing:", name: UITextViewTextDidEndEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: "textViewDidChange:", name: UITextViewTextDidChangeNotification, object: nil)
+  }
+
+  // MARK: Private
+
+  // MARK: Keyboard Notification
+  
+  func keyboardWillShow(aNotification: NSNotification) {
+  }
+  
+  func keyboardWillHide(aNotification: NSNotification) {
+  }
+  
+  func keyboardDidHide(aNotification: NSNotification) {
+  }
+  
+  // MARK: TextField Notification
+  
+  func textFieldDidBeginEditing(aNotification: NSNotification) {
+    currentView = aNotification.object as? UIView
+  }
+  
+  func textFieldDidEndEditing(aNotification: NSNotification) {
+  }
+  
+  func textFieldDidChange(aNotification: NSNotification) {
+  }
+  
+  // MARK: TextView Notification
+  
+  func textViewDidBeginEditing(aNotification: NSNotification) {
+  }
+  
+  func textViewDidEndEditing(aNotification: NSNotification) {
+  }
+  
+  func textViewDidChange(aNotification: NSNotification) {
+  }
+  
 }

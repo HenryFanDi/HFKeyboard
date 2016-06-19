@@ -18,6 +18,10 @@ class KeyboardManager: NSObject {
     }
     set(newValue) {
       self.hidden = newValue
+      
+      if self.hidden == true && currentView != nil {
+        currentView?.resignFirstResponder()
+      }
     }
   }
   
@@ -26,7 +30,16 @@ class KeyboardManager: NSObject {
       return self.enable
     }
     set(newValue) {
+      if newValue == self.enable {
+        return
+      }
       self.enable = newValue
+      
+      if newValue == false {
+        removeKeyboardObserver()
+        return
+      }
+      addKeyboardObservers()
     }
   }
   
@@ -39,13 +52,15 @@ class KeyboardManager: NSObject {
     }
     set(newValue) {
       if newValue == nil {
-        self.moveView = UIView.init(frame: UIScreen.mainScreen().bounds)
+        self.moveView = keyWindow()
       } else {
         self.moveView = newValue
       }
+      moveViewRect = self.moveView!.frame
     }
   }
   
+  private var moveViewRect: CGRect = CGRect()
   private var keyboardRect: CGRect = CGRect()
   
   // MARK: Singleton Pattern
@@ -87,6 +102,11 @@ class KeyboardManager: NSObject {
   }
   
   // MARK: Private
+  
+  private func keyWindow() -> UIWindow {
+    let window = UIApplication.sharedApplication().keyWindow
+    return window!
+  }
   
   private func viewOffset(keyboardRect: CGRect) {
   }

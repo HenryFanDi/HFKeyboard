@@ -111,7 +111,41 @@ class KeyboardManager: NSObject {
   private func viewOffset(keyboardRect: CGRect) {
   }
   
-  private func moveOffsetWithKeyboardWillHide() {
+  private func moveOffsetWithKeyboardWillShow(offsetY: CGFloat) { // Show
+    keyboardWillShowOffset(offsetY)
+  }
+  
+  private func keyboardWillShowOffset(offsetY: CGFloat) {
+    let moveView = keyboardOfMoveView()
+    
+    UIView.animateWithDuration(0.3) { () -> Void in
+      var newFrame = moveView.frame
+      newFrame.origin.y = offsetY
+      moveView.frame = newFrame
+    }
+  }
+  
+  private func moveOffsetWithKeyboardWillHide() { // Hide
+    currentView = nil
+    moveOffsetY = 0.0
+    keyboardWillHideOffset()
+  }
+  
+  private func keyboardWillHideOffset() {
+    let moveView = keyboardOfMoveView()
+    
+    unowned let unownedSelf = self
+    UIView.animateWithDuration(0.3) { () -> Void in
+      moveView.frame = unownedSelf.moveViewRect
+    }
+  }
+  
+  private func keyboardOfMoveView() -> UIView { // View
+    var moveView: UIView? = self.moveView
+    if moveView == nil {
+      moveView = keyWindow()
+    }
+    return moveView!
   }
   
   // MARK: Keyboard Notification

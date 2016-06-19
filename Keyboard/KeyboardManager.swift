@@ -46,6 +46,8 @@ class KeyboardManager: NSObject {
     }
   }
   
+  private var keyboardRect: CGRect = CGRect()
+  
   // MARK: Singleton Pattern
   
   class var shared: KeyboardManager {
@@ -83,15 +85,26 @@ class KeyboardManager: NSObject {
     notificationCenter.addObserver(self, selector: "textViewDidEndEditing:", name: UITextViewTextDidEndEditingNotification, object: nil)
     notificationCenter.addObserver(self, selector: "textViewDidChange:", name: UITextViewTextDidChangeNotification, object: nil)
   }
-
+  
   // MARK: Private
-
+  
+  private func viewOffset(keyboardRect: CGRect) {
+  }
+  
+  private func moveOffsetWithKeyboardWillHide() {
+  }
+  
   // MARK: Keyboard Notification
   
   func keyboardWillShow(aNotification: NSNotification) {
+    let keyboardRect = aNotification.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue
+    self.keyboardRect = keyboardRect
+    if currentView != nil {
+    }
   }
   
   func keyboardWillHide(aNotification: NSNotification) {
+    moveOffsetWithKeyboardWillHide()
   }
   
   func keyboardDidHide(aNotification: NSNotification) {

@@ -8,6 +8,8 @@
 
 import UIKit
 
+var OBJECT_OFFSET: CGFloat { get { return 10.0 } }
+
 class KeyboardManager: NSObject {
   
   var currentView: UIView?
@@ -109,6 +111,21 @@ class KeyboardManager: NSObject {
   }
   
   private func viewOffset(keyboardRect: CGRect) {
+    let keyboardMinY = CGRectGetMinY(keyboardRect)
+    
+    let currentViewRect = (currentView!.superview?.convertRect(currentView!.frame, toView: keyWindow()))! as CGRect
+    let currentViewMaxY = CGRectGetMaxY(currentViewRect) as CGFloat
+    
+    if currentViewMaxY > keyboardMinY {
+      moved = true
+      moveOffsetY = currentViewMaxY - keyboardMinY
+      moveOffsetWithKeyboardWillShow(-moveOffsetY - OBJECT_OFFSET)
+    } else {
+      if (moved) { // Is moved, hide the keyboard
+        moved = false
+        keyboardWillHideOffset()
+      }
+    }
   }
   
   private func moveOffsetWithKeyboardWillShow(offsetY: CGFloat) { // Show

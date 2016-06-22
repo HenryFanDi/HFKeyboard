@@ -14,28 +14,30 @@ class KeyboardManager: NSObject {
   
   var currentView: UIView?
   
-  private var hidden: Bool? {
+  private var _hidden: Bool = false
+  var hidden: Bool? {
     get {
-      return self.hidden
+      return _hidden
     }
     set(newValue) {
-      self.hidden = newValue
+      _hidden = newValue!
       
-      if self.hidden == true && currentView != nil {
+      if _hidden == true && currentView != nil {
         currentView?.resignFirstResponder()
       }
     }
   }
   
-  private var enable: Bool? {
+  private var _enable: Bool = false
+  var enable: Bool? {
     get {
-      return self.enable
+      return _enable
     }
     set(newValue) {
-      if newValue == self.enable {
+      if newValue == _enable {
         return
       }
-      self.enable = newValue
+      _enable = newValue!
       
       if newValue == false {
         removeKeyboardObserver()
@@ -48,17 +50,18 @@ class KeyboardManager: NSObject {
   private var moved: Bool = false
   private var moveOffsetY: CGFloat = 0
   
-  private var moveView: UIView? {
+  private var _moveView: UIView?
+  var moveView: UIView? {
     get {
-      return self.moveView
+      return _moveView
     }
     set(newValue) {
       if newValue == nil {
-        self.moveView = keyWindow()
+        _moveView = keyWindow()
       } else {
-        self.moveView = newValue
+        _moveView = newValue!
       }
-      moveViewRect = self.moveView!.frame
+      moveViewRect = _moveView!.frame
     }
   }
   
@@ -90,17 +93,17 @@ class KeyboardManager: NSObject {
   
   private func addKeyboardObservers() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "keyboardDidHide:", name: UIKeyboardDidHideNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
     
-    notificationCenter.addObserver(self, selector: "textFieldDidBeginEditing:", name: UITextFieldTextDidBeginEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "textFieldDidEndEditing:", name: UITextFieldTextDidEndEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "textFieldDidChange:", name: UITextFieldTextDidChangeNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextFieldDelegate.textFieldDidBeginEditing(_:)), name: UITextFieldTextDidBeginEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextFieldDelegate.textFieldDidEndEditing(_:)), name: UITextFieldTextDidEndEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(self.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
     
-    notificationCenter.addObserver(self, selector: "textViewDidBeginEditing:", name: UITextViewTextDidBeginEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "textViewDidEndEditing:", name: UITextViewTextDidEndEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: "textViewDidChange:", name: UITextViewTextDidChangeNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidBeginEditing(_:)), name: UITextViewTextDidBeginEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidEndEditing(_:)), name: UITextViewTextDidEndEditingNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidChange(_:)), name: UITextViewTextDidChangeNotification, object: nil)
   }
   
   // MARK: Private
@@ -151,9 +154,10 @@ class KeyboardManager: NSObject {
   private func keyboardWillHideOffset() {
     let moveView = keyboardOfMoveView()
     
-    unowned let unownedSelf = self
     UIView.animateWithDuration(0.3) { () -> Void in
-      moveView.frame = unownedSelf.moveViewRect
+      var newFrame = moveView.frame
+      newFrame.origin.y = 0.0
+      moveView.frame = newFrame
     }
   }
   
@@ -171,6 +175,7 @@ class KeyboardManager: NSObject {
     let keyboardRect = aNotification.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue
     self.keyboardRect = keyboardRect
     if currentView != nil {
+      viewOffset(keyboardRect)
     }
   }
   

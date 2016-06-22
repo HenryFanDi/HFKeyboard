@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D887512E1D1ADC6700179D8D /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D887512C1D1ADC6700179D8D /* MainTableViewCell.swift */; };
+		D887512F1D1ADC6700179D8D /* MainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D887512D1D1ADC6700179D8D /* MainTableViewCell.xib */; };
 		D88CFA9D1D0E491400221981 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88CFA9C1D0E491400221981 /* AppDelegate.swift */; };
 		D88CFAA51D0E491400221981 /* Keyboard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D88CFAA31D0E491400221981 /* Keyboard.xcdatamodeld */; };
 		D88CFAA71D0E491500221981 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D88CFAA61D0E491500221981 /* Assets.xcassets */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D887512C1D1ADC6700179D8D /* MainTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		D887512D1D1ADC6700179D8D /* MainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainTableViewCell.xib; sourceTree = "<group>"; };
 		D88CFA991D0E491400221981 /* Keyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88CFA9C1D0E491400221981 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D88CFAA41D0E491400221981 /* Keyboard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Keyboard.xcdatamodel; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				D88CFA9C1D0E491400221981 /* AppDelegate.swift */,
 				D89A38B51D0F1B9B00545A47 /* MainViewController.swift */,
 				D89A38B61D0F1B9B00545A47 /* MainViewController.xib */,
+				D887512C1D1ADC6700179D8D /* MainTableViewCell.swift */,
+				D887512D1D1ADC6700179D8D /* MainTableViewCell.xib */,
 				D89F14591D1157C10086AF31 /* KeyboardManager.swift */,
 				D88CFAA61D0E491500221981 /* Assets.xcassets */,
 				D88CFAA81D0E491500221981 /* LaunchScreen.storyboard */,
@@ -237,6 +243,7 @@
 			files = (
 				D88CFAAA1D0E491500221981 /* LaunchScreen.storyboard in Resources */,
 				D89A38B81D0F1B9B00545A47 /* MainViewController.xib in Resources */,
+				D887512F1D1ADC6700179D8D /* MainTableViewCell.xib in Resources */,
 				D88CFAA71D0E491500221981 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +273,7 @@
 				D89A38B71D0F1B9B00545A47 /* MainViewController.swift in Sources */,
 				D88CFAA51D0E491400221981 /* Keyboard.xcdatamodeld in Sources */,
 				D88CFA9D1D0E491400221981 /* AppDelegate.swift in Sources */,
+				D887512E1D1ADC6700179D8D /* MainTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

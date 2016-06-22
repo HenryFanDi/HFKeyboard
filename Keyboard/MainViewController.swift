@@ -16,6 +16,18 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   // MARK: Lifecycle
   
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
+    
+    KeyboardManager.shared.enable = true
+  }
+  
+  override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    
+    KeyboardManager.shared.enable = false
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     setupMainViewController()
@@ -45,7 +57,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 5
+    return 20
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

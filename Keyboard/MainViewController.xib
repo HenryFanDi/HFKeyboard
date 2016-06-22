@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="Keyboard" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="oIO-0q-RAt" id="E5m-pI-583"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +15,23 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oIO-0q-RAt">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="MYG-0F-4Is"/>
+                        <outlet property="delegate" destination="-1" id="8sO-lp-1OE"/>
+                    </connections>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" red="0.50977612439999997" green="1" blue="0.90027043780000005" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="oIO-0q-RAt" secondAttribute="bottom" id="Ejd-1I-b8N"/>
+                <constraint firstItem="oIO-0q-RAt" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="cyk-Zv-Rke"/>
+                <constraint firstAttribute="trailing" secondItem="oIO-0q-RAt" secondAttribute="trailing" id="fYB-Bs-g03"/>
+                <constraint firstItem="oIO-0q-RAt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jt2-3s-9U3"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>

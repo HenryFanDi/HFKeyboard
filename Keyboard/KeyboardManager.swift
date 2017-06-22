@@ -14,7 +14,7 @@ class KeyboardManager: NSObject {
   
   var currentView: UIView?
   
-  private var _hidden: Bool = false
+  fileprivate var _hidden: Bool = false
   var hidden: Bool? {
     get {
       return _hidden
@@ -28,7 +28,7 @@ class KeyboardManager: NSObject {
     }
   }
   
-  private var _enable: Bool = false
+  fileprivate var _enable: Bool = false
   var enable: Bool? {
     get {
       return _enable
@@ -47,10 +47,10 @@ class KeyboardManager: NSObject {
     }
   }
   
-  private var moved: Bool = false
-  private var moveOffsetY: CGFloat = 0
+  fileprivate var moved: Bool = false
+  fileprivate var moveOffsetY: CGFloat = 0
   
-  private var _moveView: UIView?
+  fileprivate var _moveView: UIView?
   var moveView: UIView? {
     get {
       return _moveView
@@ -65,21 +65,12 @@ class KeyboardManager: NSObject {
     }
   }
   
-  private var moveViewRect: CGRect = CGRect()
-  private var keyboardRect: CGRect = CGRect()
+  fileprivate var moveViewRect: CGRect = CGRect()
+  fileprivate var keyboardRect: CGRect = CGRect()
   
   // MARK: Singleton Pattern
   
-  class var shared: KeyboardManager {
-    struct Static {
-      static var instance: KeyboardManager?
-      static var token: dispatch_once_t = 0
-    }
-    dispatch_once(&Static.token) {
-      Static.instance = KeyboardManager()
-    }
-    return Static.instance!
-  }
+  static let sharedInstance = KeyboardManager()
   
   // MARK: Initialize
   
@@ -87,37 +78,37 @@ class KeyboardManager: NSObject {
     super.init()
   }
   
-  private func removeKeyboardObserver() {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+  fileprivate func removeKeyboardObserver() {
+    NotificationCenter.default.removeObserver(self)
   }
   
-  private func addKeyboardObservers() {
-    let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-    notificationCenter.addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: UIKeyboardDidHideNotification, object: nil)
+  fileprivate func addKeyboardObservers() {
+    let notificationCenter = NotificationCenter.default
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(self.keyboardDidHide(_:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     
-    notificationCenter.addObserver(self, selector: #selector(UITextFieldDelegate.textFieldDidBeginEditing(_:)), name: UITextFieldTextDidBeginEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: #selector(UITextFieldDelegate.textFieldDidEndEditing(_:)), name: UITextFieldTextDidEndEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: #selector(self.textFieldDidChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextFieldDelegate.textFieldDidBeginEditing(_:)), name: NSNotification.Name.UITextFieldTextDidBeginEditing, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextFieldDelegate.textFieldDidEndEditing(_:)), name: NSNotification.Name.UITextFieldTextDidEndEditing, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(self.textFieldDidChange(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: nil)
     
-    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidBeginEditing(_:)), name: UITextViewTextDidBeginEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidEndEditing(_:)), name: UITextViewTextDidEndEditingNotification, object: nil)
-    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidChange(_:)), name: UITextViewTextDidChangeNotification, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidBeginEditing(_:)), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidEndEditing(_:)), name: NSNotification.Name.UITextViewTextDidEndEditing, object: nil)
+    notificationCenter.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidChange(_:)), name: NSNotification.Name.UITextViewTextDidChange, object: nil)
   }
   
   // MARK: Private
   
-  private func keyWindow() -> UIWindow {
-    let window = UIApplication.sharedApplication().keyWindow
+  fileprivate func keyWindow() -> UIWindow {
+    let window = UIApplication.shared.keyWindow
     return window!
   }
   
-  private func viewOffset(keyboardRect: CGRect) {
-    let keyboardMinY = CGRectGetMinY(keyboardRect)
+  fileprivate func viewOffset(_ keyboardRect: CGRect) {
+    let keyboardMinY = keyboardRect.minY
     
-    let currentViewRect = (currentView!.superview?.convertRect(currentView!.frame, toView: keyWindow()))! as CGRect
-    let currentViewMaxY = CGRectGetMaxY(currentViewRect) as CGFloat
+    let currentViewRect = (currentView!.superview?.convert(currentView!.frame, to: keyWindow()))! as CGRect
+    let currentViewMaxY = currentViewRect.maxY as CGFloat
     
     if currentViewMaxY > keyboardMinY {
       moved = true
@@ -131,37 +122,37 @@ class KeyboardManager: NSObject {
     }
   }
   
-  private func moveOffsetWithKeyboardWillShow(offsetY: CGFloat) { // Show
+  fileprivate func moveOffsetWithKeyboardWillShow(_ offsetY: CGFloat) { // Show
     keyboardWillShowOffset(offsetY)
   }
   
-  private func keyboardWillShowOffset(offsetY: CGFloat) {
+  fileprivate func keyboardWillShowOffset(_ offsetY: CGFloat) {
     let moveView = keyboardOfMoveView()
     
-    UIView.animateWithDuration(0.3) { () -> Void in
+    UIView.animate(withDuration: 0.3, animations: { () -> Void in
       var newFrame = moveView.frame
       newFrame.origin.y = offsetY
       moveView.frame = newFrame
-    }
+    }) 
   }
   
-  private func moveOffsetWithKeyboardWillHide() { // Hide
+  fileprivate func moveOffsetWithKeyboardWillHide() { // Hide
     currentView = nil
     moveOffsetY = 0.0
     keyboardWillHideOffset()
   }
   
-  private func keyboardWillHideOffset() {
+  fileprivate func keyboardWillHideOffset() {
     let moveView = keyboardOfMoveView()
     
-    UIView.animateWithDuration(0.3) { () -> Void in
+    UIView.animate(withDuration: 0.3, animations: { () -> Void in
       var newFrame = moveView.frame
       newFrame.origin.y = 0.0
       moveView.frame = newFrame
-    }
+    }) 
   }
   
-  private func keyboardOfMoveView() -> UIView { // View
+  fileprivate func keyboardOfMoveView() -> UIView { // View
     var moveView: UIView? = self.moveView
     if moveView == nil {
       moveView = keyWindow()
@@ -171,42 +162,42 @@ class KeyboardManager: NSObject {
   
   // MARK: Keyboard Notification
   
-  func keyboardWillShow(aNotification: NSNotification) {
-    let keyboardRect = aNotification.userInfo![UIKeyboardFrameEndUserInfoKey]!.CGRectValue
-    self.keyboardRect = keyboardRect
+  func keyboardWillShow(_ aNotification: Notification) {
+    let keyboardRect = (aNotification.userInfo![UIKeyboardFrameEndUserInfoKey]! as AnyObject).cgRectValue
+    self.keyboardRect = keyboardRect!
     if currentView != nil {
-      viewOffset(keyboardRect)
+      viewOffset(keyboardRect!)
     }
   }
   
-  func keyboardWillHide(aNotification: NSNotification) {
+  func keyboardWillHide(_ aNotification: Notification) {
     moveOffsetWithKeyboardWillHide()
   }
   
-  func keyboardDidHide(aNotification: NSNotification) {
+  func keyboardDidHide(_ aNotification: Notification) {
   }
   
   // MARK: TextField Notification
   
-  func textFieldDidBeginEditing(aNotification: NSNotification) {
+  func textFieldDidBeginEditing(_ aNotification: Notification) {
     currentView = aNotification.object as? UIView
   }
   
-  func textFieldDidEndEditing(aNotification: NSNotification) {
+  func textFieldDidEndEditing(_ aNotification: Notification) {
   }
   
-  func textFieldDidChange(aNotification: NSNotification) {
+  func textFieldDidChange(_ aNotification: Notification) {
   }
   
   // MARK: TextView Notification
   
-  func textViewDidBeginEditing(aNotification: NSNotification) {
+  func textViewDidBeginEditing(_ aNotification: Notification) {
   }
   
-  func textViewDidEndEditing(aNotification: NSNotification) {
+  func textViewDidEndEditing(_ aNotification: Notification) {
   }
   
-  func textViewDidChange(aNotification: NSNotification) {
+  func textViewDidChange(_ aNotification: Notification) {
   }
   
 }

@@ -26,7 +26,7 @@ class MainTableViewCell: UITableViewCell {
   
   // MARK: Private
   
-  private func setupMainTableViewCell() {
+  fileprivate func setupMainTableViewCell() {
   }
   
 }

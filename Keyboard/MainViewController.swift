@@ -10,22 +10,22 @@ import UIKit
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
   
-  private let MainCellReuseIdentifier = "MainCellReuseIdentifier"
+  fileprivate let MainCellReuseIdentifier = "MainCellReuseIdentifier"
   
   @IBOutlet weak var tableView: UITableView!
   
   // MARK: Lifecycle
   
-  override func viewDidAppear(animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
-    KeyboardManager.shared.enable = true
+    KeyboardManager.sharedInstance.enable = true
   }
   
-  override func viewWillDisappear(animated: Bool) {
+  override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     
-    KeyboardManager.shared.enable = false
+    KeyboardManager.sharedInstance.enable = false
   }
   
   override func viewDidLoad() {
@@ -39,12 +39,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   // MARK: Private
   
-  private func setupMainViewController() {
+  fileprivate func setupMainViewController() {
     setupTableView()
   }
   
-  private func setupTableView() {
-    tableView.registerNib(MainTableViewCell.nib(), forCellReuseIdentifier: MainCellReuseIdentifier)
+  fileprivate func setupTableView() {
+    tableView.register(MainTableViewCell.nib(), forCellReuseIdentifier: MainCellReuseIdentifier)
     
     tableView.estimatedRowHeight = 50.0
     tableView.rowHeight = UITableViewAutomaticDimension
@@ -52,17 +52,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
   
   // MARK: UITableViewDataSource
   
-  func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return 20
   }
   
-  func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let tableViewCell = tableView.dequeueReusableCellWithIdentifier(MainCellReuseIdentifier) as! MainTableViewCell
-    tableViewCell.backgroundColor = UIColor.redColor()
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let tableViewCell = tableView.dequeueReusableCell(withIdentifier: MainCellReuseIdentifier) as! MainTableViewCell
+    tableViewCell.backgroundColor = UIColor.red
     return tableViewCell
   }
   
